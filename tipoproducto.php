@@ -5,18 +5,35 @@
     <section id="main-content">
         <section class="wrapper">
             <div class="container">
-                <h2>Tipo Producto</h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="mTipoProducto.php">
-                            <button class="btn btn-md btn-primary btn-block ">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Agregar
-                            </button>
-                        </a>
+                <h2>Agregar Tipo Producto</h2>
+                <form name="myForm" class="form-horizontal" method="post"  action="conf/tipoProducto/insertar.php">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="inputNombre">Tipo Producto</label>
+                            select
+                        </div>
                     </div>
-                    <div class="col-md-8"></div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="inputNombre">Nombre</label>
+                            <input type="text" class="form-control" name="descripcion" id="descripcion">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="inputNombre">Estado</label>
+                            <input type="text" class="form-control" name="descripcion" id="descripcion">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button class="btn btn-md btn-primary btn-block" type="submit">
+                                    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>&nbsp;Guardar
+                            </button>
+                        </div>    
+                    </div>
+                </form>
                 </div>
-            </div>
         </section>
     </section>
 </section>

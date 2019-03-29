@@ -27,7 +27,7 @@
               </a>
             <ul class="sub">
               <li><a href="producto.php">Productos</a></li>
-              <li><a href="tipoproducto.php">Tipo Productos</a></li>
+              <li><a href="mTipoProducto.php">Tipo Productos</a></li>
               <li><a href="stock.php">Stock</a></li>
             </ul>
           </li>

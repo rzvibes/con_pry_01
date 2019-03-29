@@ -6,7 +6,7 @@
         <section class="wrapper">
             <div class="container">
                 <h2>Agregar Producto</h2>
-                <form name="myForm" class="form-horizontal" method="post"  action="config/registrarProducto.php">
+                <form name="myForm" class="form-horizontal" method="post"  action="conf/producto/insertar.php">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="inputNombre">Tipo Producto</label>

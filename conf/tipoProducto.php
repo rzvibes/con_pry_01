@@ -1,9 +1,9 @@
 <?php
     include_once('base.php');
 
-    function listarProducto(){
+    function listarTipoProducto(){
         $conn = iniciarConexion();
-        $sql = "insert producto p INNER JOIN tipoProducto tp ON p.tipoProducto = tp.idTipoProducto;";
+        $sql = "SELECT * FROM tipoProducto";
         $result = ejecutarQuery($conn, $sql);
         cerrarConexion($conn);
         return $result;
