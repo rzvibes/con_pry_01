@@ -16,13 +16,7 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="inputNombre">Nombre</label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="inputNombre">Estado</label>
-                            <input type="text" class="form-control" name="estado" id="estado">
+                            <input type="text" class="form-control" name="descripcion" id="descripcion" require>
                         </div>
                     </div>
                     <div class="row">
