@@ -1,12 +1,9 @@
 <?php
-    include_once('base.php');
+include_once('base.php');
+include_once('tipoProducto.php');
+	$nombre = $_POST['descripcion'];
+    $estado = $_POST['estado'];
+    $query = insertarTipoProducto($nombre,$estado);
 
-    function listarProducto(){
-        $conn = iniciarConexion();
-        $sql = "insert producto p INNER JOIN tipoProducto tp ON p.tipoProducto = tp.idTipoProducto;";
-        $result = ejecutarQuery($conn, $sql);
-        cerrarConexion($conn);
-        return $result;
-    }
-
-?>
+    header("location: ../../mTipoProducto.php");
+    ?>

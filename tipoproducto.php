@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="inputNombre">Tipo Producto</label>
-                            select
+                            
                         </div>
                     </div>
                     <div class="row">
@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="inputNombre">Estado</label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion">
+                            <input type="text" class="form-control" name="estado" id="estado">
                         </div>
                     </div>
                     <div class="row">

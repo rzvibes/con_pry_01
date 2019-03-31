@@ -10,10 +10,10 @@
     <section id="main-content">
         <section class="wrapper">
             <div class="container">
-                <h2>Producto</h2>
+                <h2>Tipo Producto</h2>
                 <div class="row">
                     <div class="col-md-4">
-                        <a href="tipoProducto.php">
+                        <a href="tipoproducto.php">
                             <button class="btn btn-md btn-primary btn-block ">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Agregar
                             </button>
