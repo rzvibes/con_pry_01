@@ -10,21 +10,22 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="inputNombre">Tipo Producto</label>
-                            select
+                            
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="inputNombre">Nombre</label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion">
+                            <input type="text" class="form-control" name="descripcion" id="descripcion" require>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="inputNombre">Estado</label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion">
-                        </div>
-                    </div>
+                    Estado
+                <select name="cbxTipoEstado"  class="form-control col-md">
+                    <option value="">Seleccionar Estado:</option>
+                    <option value="1">HABILITADO</option>
+                    <option value="0">DESHABILITADO</option>
+                </select>
+            <br>
                     <div class="row">
                         <div class="col-md-4">
                             <button class="btn btn-md btn-primary btn-block" type="submit">

@@ -10,19 +10,13 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="inputNombre">Tipo Producto</label>
-                            select
+                            select tipo producto
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="inputNombre">Descripción</label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="inputNombre">Cantidad</label>
-                            <input type="text" class="form-control" name="descripcion" id="descripcion">
+                            <input type="text" class="form-control" name="descripcion" id="descripcion" require>
                         </div>
                     </div>
                     <div class="row">
