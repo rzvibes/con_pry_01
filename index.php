@@ -14,7 +14,134 @@
     <section id="main-content">
         <section class="wrapper">
             <div class="container">
-                <h1>Venta</h1>      
+                <h1>Venta</h1>
+                <div class="menu">
+                    <!-- Start Cart -->
+                    <div class="container">
+                        <div class="row">
+                            <!-- Menu and categories -->
+                            <div class="col-md-9 search-grid">
+                                <div class="product-container">
+                                    <!-- Menu List of items -->
+                                    <div class="menu-list">
+                                        <div class="panel panel-default" id="content1">
+                                            <div class="panel-heading"></div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="menu-item-container">
+                                                            <div class="item-name">Veg biriyani</div>
+                                                            <div>Stock : 50 u</div>
+                                                            <div class="item-price-container">
+                                                                <div class="item-price">
+                                                                    <i class="fa fa-dollar"></i>199
+                                                                </div>
+                                                                <div class="spacer"></div>
+                                                                <div class="add-button">
+                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Veg biriyani" data-price="199" type="submit">ADD</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="menu-item-container">
+                                                            <div class="item-name">Sweet Corn Soup</div>
+                                                            <div>Stock : 50 u</div>
+                                                            <div class="item-price-container">
+                                                                <div class="item-price">
+                                                                    <i class="fa fa-dollar"></i>50
+                                                                </div>
+                                                                <div class="spacer"></div>
+                                                                <div class="add-button">
+                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Sweet Corn Soup" data-price="50" type="submit">ADD</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="menu-item-container"><div class="item-name">Corn fried Rice</div><div><i class="fa fa-dot-circle-o veg-icon"></i></div>
+                                                            <div class="item-price-container">
+                                                                <div class="item-price">
+                                                                    <i class="fa fa-dollar"></i>112
+                                                                </div>
+                                                                <div class="spacer"></div>
+                                                                <div class="add-button">
+                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Corn fried Rice" data-price="112" type="submit">ADD</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="menu-item-container"><div class="item-name">Orange Juice</div><div><i class="fa fa-dot-circle-o veg-icon"></i></div>
+                                                            <div class="item-price-container">
+                                                                <div class="item-price">
+                                                                    <i class="fa fa-dollar"></i>50
+                                                                </div>
+                                                                <div class="spacer"></div>
+                                                                <div class="add-button">
+                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Orange Juice" data-price="50" type="submit">ADD</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="menu-item-container">
+                                                            <div class="item-name">Aloo Tikis</div>
+                                                            <div><i class="fa fa-dot-circle-o veg-icon"></i></div>
+                                                            <div class="item-price-container">
+                                                                <div class="item-price">
+                                                                    <i class="fa fa-dollar"></i>89
+                                                                </div>
+                                                                <div class="spacer"></div>
+                                                                <div class="add-button">
+                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Aloo Tikis" data-price="89" type="submit">ADD</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="menu-item-container"><div class="item-name">Veg biriyani</div><div><i class="veg-icon"></i></div>
+                                                            <div class="item-price-container">
+                                                                <div class="item-price">
+                                                                    <i class="fa fa-dollar"></i>199
+                                                                </div>
+                                                                <div class="spacer"></div>
+                                                                <div class="add-button">
+                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Veg biriyani" data-price="199" type="submit">ADD</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="menu-item-container"><div class="item-name">Veg biriyani</div><div><i class="veg-icon"></i></div>
+                                                            <div class="item-price-container">
+                                                                <div class="item-price">
+                                                                    <i class="fa fa-dollar"></i>199
+                                                                </div>
+                                                                <div class="spacer"></div>
+                                                                <div class="add-button">
+                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Veg biriyani" data-price="199" type="submit">ADD</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- //Menu List of items -->
+                                </div>
+                            </div>
+                            <!-- //Menu and categories -->
+                            <!-- Cart Grid -->
+                            <div class="col-md-3">
+                                <div id="cart"></div>
+                            </div>
+                            <!-- //Cart Grid -->
+                        </div>
+                    </div>
+                    <!-- End Cart -->
+                </div>     
             </div>
         </section>
     </section>
