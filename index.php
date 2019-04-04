@@ -20,7 +20,7 @@
                     <div class="container">
                         <div class="row">
                             <!-- Menu and categories -->
-                            <div class="col-md-9 search-grid">
+                            <div class="col-md-6 search-grid">
                                 <div class="product-container">
                                     <!-- Menu List of items -->
                                     <div class="menu-list">
@@ -147,4 +147,11 @@
     </section>
 </section>
 </section>
+<script src="lib/js/jquery-1.12.4.min.js" ></script>
+<script src="lib/js/jQuery.SimpleCart.js" ></script>
+<script>
+    $(document).ready(function () {
+        $('#cart').simpleCart();
+    });
+</script>
 <?php include_once("footer.php"); ?>

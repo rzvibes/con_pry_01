@@ -9,6 +9,8 @@
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <title>KUV SOLUCIONES TECNOLÓGICAS
 </title>
+  <script src="lib/js/jquery-1.12.4.min.js" ></script>
+  <script src="lib/js/jQuery.SimpleCart.js" ></script>
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -63,8 +65,7 @@
   <link href="lib/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="lib/css/font-awesome.min.css" type="text/css">
 
-  <script src="lib/js/jquery-1.12.4.min.js" ></script>
-  <script src="lib/js/jQuery.SimpleCart.js" ></script>
+  
 </head>
 
 <body>
