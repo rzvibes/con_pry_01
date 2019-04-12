@@ -16,12 +16,16 @@
             if(document.getElementById("cbxTipoPago").value == "1"){
                 document.getElementById("lblEfectivo").style.visibility='visible';
                 document.getElementById("lblTarjeta").style.visibility='hidden';
+                document.getElementById("lblEfectivo").style.display='block';
+                document.getElementById("lblTarjeta").style.display='none';
                 document.getElementById("txtNroComprobante").value = "";
             }
             else
             {
                 document.getElementById("lblEfectivo").style.visibility='hidden';
                 document.getElementById("lblTarjeta").style.visibility='visible';
+                document.getElementById("lblEfectivo").style.display='none';
+                document.getElementById("lblTarjeta").style.display='block';
                 document.getElementById("txtMontoEfectivo").value = "";
                 document.getElementById("lblTotal").innerHTML = "";
             }
@@ -34,14 +38,66 @@
             alert(iValorTotal + " --- " + iValorMontoEfectivo);
         }
 
+        function loadManualCart()
+        {
+
+        }
+
         function loadCart(idProducto){
             var lblMarca = "lblmarca" + idProducto.toString();
             var lblNombreProducto = "lblnombreproducto" + idProducto.toString();
-            var iCantidad = document.getElementById(idProducto).value;
+            var lblStock = "lblstock" + idProducto.toString();
+            var lblPrecio = "lblprecio" + idProducto.toString();
 
-            alert(document.getElementById(lblMarca).innerHTML + " " + document.getElementById(lblNombreProducto).innerHTML + " cantidad" + iCantidad);
+            var iCantidad = Number(document.getElementById(idProducto).value);
+            var sNombtreProducto = document.getElementById(lblNombreProducto).innerHTML;
+            var sMarca = document.getElementById(lblMarca).innerHTML;
+            var iStock = Number(document.getElementById(lblStock).innerHTML);
+            var iPrecioU = Number(document.getElementById(lblPrecio).innerHTML);
+            var iTotal = iCantidad * iPrecioU;
+            console.log("---------------------------------");
+            console.log("Cantidad " + iCantidad.toString());
+            console.log("Nombre Producto " + sNombtreProducto.toString());
+            console.log("Marca " + sMarca.toString());
+            console.log("Stock " + iStock.toString());
+            console.log("Precio U " + iPrecioU.toString());
+            console.log("Total " + iTotal.toString());
+            console.log("---------------------------------");
+            
+            if(iCantidad <= iStock){
+                if($.jStorage.get("Cart") == null){
+                    var aCart = [];
+                    var oObject = {idProducto :idProducto, marca:sMarca, productoNombre:sNombtreProducto, cantidad:iCantidad, precioUnitario:iPrecioU, total:iTotal};
+                    aCart.push(oObject);
+                    $.jStorage.set("Cart",aCart)
+                }
+                else{
+                    var aCart = $.jStorage.get("Cart");
+                    var oObject = {idProducto :idProducto, marca:sMarca, productoNombre:sNombtreProducto, cantidad:iCantidad, precioUnitario:iPrecioU, total:iTotal};
+                    var result = aCart.find( product => product.idProducto === idProducto );
+                    console.log(result);
+                    if(result == undefined){
+                        aCart.push(oObject);
+                    }
+                    else{
+                        var objIndex = aCart.findIndex((obj => obj.idProducto == idProducto));
+                        aCart[objIndex].cantidad = aCart[objIndex].cantidad + iCantidad;
+                        aCart[objIndex].total = aCart[objIndex].cantidad * aCart[objIndex].precioUnitario
+                    }
+                    $.jStorage.set("Cart",aCart)
+                }
+                cargarCarro();
+            }
+            else{
+                //sin stock suficiente
+            }
+            //$.jStorage.set("mykey", "keyvalue");
 
-            document.getElementById(idProducto).value = 1;
+            document.getElementById(idProducto).value = 1;            
+        }
+
+        function cargarCarro(){
+
         }
     </script>
     <section id="main-content">
@@ -58,7 +114,7 @@
                         <input type="number" id="txtCodigoBarra" name="txtCodigoBarra" class="form-control" min="1" max="100">
                     </div>
                     <div class="col-md-3">
-                    <button type="button" class="btn btn-primary">Agregar</button>
+                    <button type="button" class="btn btn-primary" onclick="loadManualCart()">Agregar</button>
                     </div>
                 </div>
                 <br/>
@@ -71,17 +127,29 @@
                                         $result = listarProductoConStock();
                                         if ($result->num_rows > 0) {
                                             while($row = $result->fetch_assoc()) {
-                                                echo("<span class='border border-primary'><div class='col-md-4 border border-primary' >");
-                                                echo($row["tipoProducto"]);
-                                                echo("<h4 class='nomargin'><label id='lblmarca".$row["idproducto"]."' name='lblmarca".$row["idproducto"]."' >".$row["marca"]."</label></h4>");
-                                                echo("<p><label id='lblnombreproducto".$row["idproducto"]."' name='lblnombreproducto".$row["idproducto"]."' >".$row["nombreProducto"]."</label></p>");
-                                                echo("Disponibilidad: ".$row["stock"]);
-                                                echo(" - Precio: ".$row["precio"]);
-                                                echo("<div class='row'>");
-                                                echo("<div class='col-md-5'><button type='button' class='btn btn-primary' onclick='loadCart(".$row["idproducto"].")'>Agregar</button></div>");
-                                                echo("<div class='col-md-5'><input type='number' id='".$row["idproducto"]."' name='".$row["idproducto"]."' class='form-control' value='1' min='1' max='100'></div>");
+                                                echo("<div class='col-md-4 border border-primary' >");
+                                                    echo($row["tipoProducto"]);
+                                                    echo("<h4 class='nomargin'>");
+                                                        echo("<label id='lblmarca".$row["idproducto"]."' name='lblmarca".$row["idproducto"]."' >".$row["marca"]."</label>");
+                                                    echo("</h4>");
+                                                    echo("<p>");
+                                                        echo("<label id='lblnombreproducto".$row["idproducto"]."' name='lblnombreproducto".$row["idproducto"]."' >".$row["nombreProducto"]."</label>");
+                                                    echo("</p>");
+                                                    echo("Disponibilidad: ");
+                                                        echo("<label id='lblstock".$row["idproducto"]."' name='lblstock".$row["idproducto"]."' >".$row["stock"]."</label>");
+                                                    //echo($row["stock"]);
+                                                    echo(" - Precio: ");
+                                                        echo("<label id='lblprecio".$row["idproducto"]."' name='lblprecio".$row["idproducto"]."' >".$row["precio"]."</label>");
+                                                    //echo($row["precio"]);
+                                                    echo("<div class='row'>");
+                                                        echo("<div class='col-md-5'>");
+                                                            echo("<button type='button' class='btn btn-primary' onclick='loadCart(".$row["idproducto"].")'>Agregar</button>");
+                                                        echo("</div>");
+                                                        echo("<div class='col-md-5'>");
+                                                            echo("<input type='number' id='".$row["idproducto"]."' name='".$row["idproducto"]."' class='form-control' value='1' min='1' max='100'>");
+                                                        echo("</div>");
+                                                    echo("</div>");
                                                 echo("</div>");
-                                                echo("</div></span>");
                                             }
                                         }
                                     ?>
