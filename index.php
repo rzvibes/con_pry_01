@@ -189,4 +189,11 @@
     </section>
 </section>
 </section>
+<script src="lib/js/jquery-1.12.4.min.js" ></script>
+<script src="lib/js/jQuery.SimpleCart.js" ></script>
+<script>
+    $(document).ready(function () {
+        $('#cart').simpleCart();
+    });
+</script>
 <?php include_once("footer.php"); ?>

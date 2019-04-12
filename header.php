@@ -9,6 +9,8 @@
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <title>KUV SOLUCIONES TECNOLÓGICAS
 </title>
+  <script src="lib/js/jquery-1.12.4.min.js" ></script>
+  <script src="lib/js/jQuery.SimpleCart.js" ></script>
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -58,6 +60,12 @@
   <script type="text/javascript" src="lib/js/dataTables.bootstrap4.min.js"></script>
   <script type="text/javascript" src="lib/js/date-uk.js"></script>
   <script type="text/javascript" src="lib/js/regiones.js"></script>
-  <script type="text/javascript" src="lib/js/jstorage.min.js"></script>
+
+  <link href="lib/css/simple_cart.css" rel="stylesheet">
+  <link href="lib/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="lib/css/font-awesome.min.css" type="text/css">
+
+  <script src="lib/js/jquery-1.12.4.min.js" ></script>
+  <script src="lib/js/jQuery.SimpleCart.js" ></script>
 </head>
 <body>
