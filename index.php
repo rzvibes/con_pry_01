@@ -11,137 +11,111 @@
             exit();
         }
     ?>
+    <script>
+        function onChangeTipoPago(){ 
+            if(document.getElementById("cbxTipoPago").value == "1"){
+                document.getElementById("lblEfectivo").style.visibility='visible';
+                document.getElementById("lblTarjeta").style.visibility='hidden';
+                document.getElementById("txtNroComprobante").value = "";
+            }
+            else
+            {
+                document.getElementById("lblEfectivo").style.visibility='hidden';
+                document.getElementById("lblTarjeta").style.visibility='visible';
+                document.getElementById("txtMontoEfectivo").value = "";
+                document.getElementById("lblTotal").innerHTML = "";
+            }
+        }
+
+        function onChangeMontoEfectivo(){
+            var iValorTotal = document.getElementById("lblTotal").innerHTML;
+            var iValorMontoEfectivo = document.getElementById("txtMontoEfectivo").value;
+
+            alert(iValorTotal + " --- " + iValorMontoEfectivo);
+        }
+
+        function loadCart(idProducto){
+            var lblMarca = "lblmarca" + idProducto.toString();
+            var lblNombreProducto = "lblnombreproducto" + idProducto.toString();
+            var iCantidad = document.getElementById(idProducto).value;
+
+            alert(document.getElementById(lblMarca).innerHTML + " " + document.getElementById(lblNombreProducto).innerHTML + " cantidad" + iCantidad);
+
+            document.getElementById(idProducto).value = 1;
+        }
+    </script>
     <section id="main-content">
         <section class="wrapper">
             <div class="container">
                 <h1>Venta</h1>
-                <div class="menu">
-                    <!-- Start Cart -->
-                    <div class="container">
-                        <div class="row">
-                            <!-- Menu and categories -->
-                            <div class="col-md-9 search-grid">
-                                <div class="product-container">
-                                    <!-- Menu List of items -->
-                                    <div class="menu-list">
-                                        <div class="panel panel-default" id="content1">
-                                            <div class="panel-heading"></div>
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="menu-item-container">
-                                                            <div class="item-name">Veg biriyani</div>
-                                                            <div>Stock : 50 u</div>
-                                                            <div class="item-price-container">
-                                                                <div class="item-price">
-                                                                    <i class="fa fa-dollar"></i>199
-                                                                </div>
-                                                                <div class="spacer"></div>
-                                                                <div class="add-button">
-                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Veg biriyani" data-price="199" type="submit">ADD</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="menu-item-container">
-                                                            <div class="item-name">Sweet Corn Soup</div>
-                                                            <div>Stock : 50 u</div>
-                                                            <div class="item-price-container">
-                                                                <div class="item-price">
-                                                                    <i class="fa fa-dollar"></i>50
-                                                                </div>
-                                                                <div class="spacer"></div>
-                                                                <div class="add-button">
-                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Sweet Corn Soup" data-price="50" type="submit">ADD</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="menu-item-container"><div class="item-name">Corn fried Rice</div><div><i class="fa fa-dot-circle-o veg-icon"></i></div>
-                                                            <div class="item-price-container">
-                                                                <div class="item-price">
-                                                                    <i class="fa fa-dollar"></i>112
-                                                                </div>
-                                                                <div class="spacer"></div>
-                                                                <div class="add-button">
-                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Corn fried Rice" data-price="112" type="submit">ADD</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="menu-item-container"><div class="item-name">Orange Juice</div><div><i class="fa fa-dot-circle-o veg-icon"></i></div>
-                                                            <div class="item-price-container">
-                                                                <div class="item-price">
-                                                                    <i class="fa fa-dollar"></i>50
-                                                                </div>
-                                                                <div class="spacer"></div>
-                                                                <div class="add-button">
-                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Orange Juice" data-price="50" type="submit">ADD</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="menu-item-container">
-                                                            <div class="item-name">Aloo Tikis</div>
-                                                            <div><i class="fa fa-dot-circle-o veg-icon"></i></div>
-                                                            <div class="item-price-container">
-                                                                <div class="item-price">
-                                                                    <i class="fa fa-dollar"></i>89
-                                                                </div>
-                                                                <div class="spacer"></div>
-                                                                <div class="add-button">
-                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Aloo Tikis" data-price="89" type="submit">ADD</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="menu-item-container"><div class="item-name">Veg biriyani</div><div><i class="veg-icon"></i></div>
-                                                            <div class="item-price-container">
-                                                                <div class="item-price">
-                                                                    <i class="fa fa-dollar"></i>199
-                                                                </div>
-                                                                <div class="spacer"></div>
-                                                                <div class="add-button">
-                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Veg biriyani" data-price="199" type="submit">ADD</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="menu-item-container"><div class="item-name">Veg biriyani</div><div><i class="veg-icon"></i></div>
-                                                            <div class="item-price-container">
-                                                                <div class="item-price">
-                                                                    <i class="fa fa-dollar"></i>199
-                                                                </div>
-                                                                <div class="spacer"></div>
-                                                                <div class="add-button">
-                                                                    <button class="btn btn-primary sc-add-to-cart" data-name="Veg biriyani" data-price="199" type="submit">ADD</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- //Menu List of items -->
+                <div class="row">
+                    <div class="col-md-2">Codigo de barra : </div>
+                    <div class="col-md-3">
+                        <input type="number" id="txtCodigoBarra" name="txtCodigoBarra" class="form-control" min="1" max="100">
+                    </div>
+                    <div class="col-md-2">Cantidad : </div>
+                    <div class="col-md-2">
+                        <input type="number" id="txtCodigoBarra" name="txtCodigoBarra" class="form-control" min="1" max="100">
+                    </div>
+                    <div class="col-md-3">
+                    <button type="button" class="btn btn-primary">Agregar</button>
+                    </div>
+                </div>
+                <br/>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                                <div class="row" style="height: 500px; width: 100%; overflow-y: scroll;">
+                                    <?php
+                                        include_once("conf/producto.php");
+                                        $result = listarProductoConStock();
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                echo("<span class='border border-primary'><div class='col-md-4 border border-primary' >");
+                                                echo($row["tipoProducto"]);
+                                                echo("<h4 class='nomargin'><label id='lblmarca".$row["idproducto"]."' name='lblmarca".$row["idproducto"]."' >".$row["marca"]."</label></h4>");
+                                                echo("<p><label id='lblnombreproducto".$row["idproducto"]."' name='lblnombreproducto".$row["idproducto"]."' >".$row["nombreProducto"]."</label></p>");
+                                                echo("Disponibilidad: ".$row["stock"]);
+                                                echo(" - Precio: ".$row["precio"]);
+                                                echo("<div class='row'>");
+                                                echo("<div class='col-md-5'><button type='button' class='btn btn-primary' onclick='loadCart(".$row["idproducto"].")'>Agregar</button></div>");
+                                                echo("<div class='col-md-5'><input type='number' id='".$row["idproducto"]."' name='".$row["idproducto"]."' class='form-control' value='1' min='1' max='100'></div>");
+                                                echo("</div>");
+                                                echo("</div></span>");
+                                            }
+                                        }
+                                    ?>
                                 </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row"><h2>Carro</h2></div>
+                            <div class="row">
+                                <div id="dvCarroCompra" style="height: 250px; width: 100%; overflow-y: scroll;"></div>
                             </div>
-                            <!-- //Menu and categories -->
-                            <!-- Cart Grid -->
-                            <div class="col-md-3">
-                                <div id="cart"></div>
+                            <div class="row">
+                                Tipo de pago : 
+                                <select class="form-control col-md-3" id="cbxTipoPago" onchange="onChangeTipoPago()">
+                                    <option value="1">Efectivo</option>
+                                    <option value="2">Debito</option>
+                                    <option value="3">Credito</option>
+                                </select>
                             </div>
-                            <!-- //Cart Grid -->
+                            <div class="row">
+                                <h2>Total : <label id="lblTotal" name="lblTotal" value="0">0</label></h2>
+                            </div>
+                            <div id="lblEfectivo" >
+                                Monto en efectivo : <input type="number" id="txtMontoEfectivo" name="txtMontoEfectivo" class="form-control" min="1" max="100"  onchange="onChangeMontoEfectivo()">
+                                Vuelto : <label id="lblVuelto" name="lblVuelto"></label>
+                            </div>
+                            <div id="lblTarjeta" style="visibility:hidden" >
+                                Nro. Comprobante: <input type="number" id="txtNroComprobante" name="txtNroComprobante" class="form-control" min="1" max="100">
+                            </div>
+                            <div class="row">
+                                <button type="button" class="btn btn-primary" style="width: 100%;">Venta</button>
+                            </div>
                         </div>
                     </div>
-                    <!-- End Cart -->
-                </div>     
+                </div>
             </div>
         </section>
     </section>
