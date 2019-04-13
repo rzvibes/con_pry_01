@@ -7,7 +7,7 @@
     ?>
     <section id="main-content">
         <section class="wrapper">
-            <div class="container">
+            <div class="container" style="    width: 100%;">
                 <h2>Producto</h2>
                 <div class="row">
                     <div class="col-md-4">
@@ -51,6 +51,7 @@
                                             </button>
                                             <ul class='dropdown-menu' aria-labelledby='dropdownMenu1'>");
                                                 echo("<li><a href='#'><span class='glyphicon glyphicon-random'></span> Editar</a></li>");
+                                                echo("<li><a href='addStock.php?id=".$row["idproducto"]."'><span class='glyphicon glyphicon-random'></span> Agregar stock</a></li>");
                                             echo("</ul></div>");
                                         echo(" </td>");
                                     echo("</tr>");

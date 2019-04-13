@@ -12,6 +12,8 @@
         }
     ?>
     <script>
+        $(document).ready(function(){ cargarCarro();}) 
+
         function onChangeTipoPago(){ 
             if(document.getElementById("cbxTipoPago").value == "1"){
                 document.getElementById("lblEfectivo").style.visibility='visible';
@@ -29,13 +31,19 @@
                 document.getElementById("txtMontoEfectivo").value = "";
                 document.getElementById("lblTotal").innerHTML = "";
             }
+            cargarCarro();
         }
 
         function onChangeMontoEfectivo(){
             var iValorTotal = document.getElementById("lblTotal").innerHTML;
             var iValorMontoEfectivo = document.getElementById("txtMontoEfectivo").value;
-
-            alert(iValorTotal + " --- " + iValorMontoEfectivo);
+            if(iValorMontoEfectivo != "" && iValorMontoEfectivo != 0){
+                document.getElementById("lblVuelto").innerHTML = iValorMontoEfectivo - iValorTotal;
+            }
+            else{
+                document.getElementById("lblVuelto").innerHTML = 0;
+            }
+            //alert(iValorTotal + " --- " + iValorMontoEfectivo);
         }
 
         function loadManualCart()
@@ -63,46 +71,144 @@
             console.log("Precio U " + iPrecioU.toString());
             console.log("Total " + iTotal.toString());
             console.log("---------------------------------");
-            
-            if(iCantidad <= iStock){
-                if($.jStorage.get("Cart") == null){
-                    var aCart = [];
-                    var oObject = {idProducto :idProducto, marca:sMarca, productoNombre:sNombtreProducto, cantidad:iCantidad, precioUnitario:iPrecioU, total:iTotal};
-                    aCart.push(oObject);
-                    $.jStorage.set("Cart",aCart)
-                }
-                else{
-                    var aCart = $.jStorage.get("Cart");
-                    var oObject = {idProducto :idProducto, marca:sMarca, productoNombre:sNombtreProducto, cantidad:iCantidad, precioUnitario:iPrecioU, total:iTotal};
-                    var result = aCart.find( product => product.idProducto === idProducto );
-                    console.log(result);
-                    if(result == undefined){
+            if(iCantidad >= 1){
+                if(iCantidad <= iStock){
+                    if($.jStorage.get("Cart") == null){
+                        var aCart = [];
+                        var oObject = {idProducto :idProducto, marca:sMarca, productoNombre:sNombtreProducto, cantidad:iCantidad, precioUnitario:iPrecioU, total:iTotal};
                         aCart.push(oObject);
+                        $.jStorage.set("Cart",aCart)
                     }
                     else{
-                        var objIndex = aCart.findIndex((obj => obj.idProducto == idProducto));
-                        aCart[objIndex].cantidad = aCart[objIndex].cantidad + iCantidad;
-                        aCart[objIndex].total = aCart[objIndex].cantidad * aCart[objIndex].precioUnitario
+                        var aCart = $.jStorage.get("Cart");
+                        var oObject = {idProducto :idProducto, marca:sMarca, productoNombre:sNombtreProducto, cantidad:iCantidad, precioUnitario:iPrecioU, total:iTotal};
+                        var result = aCart.find( product => product.idProducto === idProducto );
+                        console.log(result);
+                        if(result == undefined){
+                            aCart.push(oObject);
+                        }
+                        else{
+                            var objIndex = aCart.findIndex((obj => obj.idProducto == idProducto));
+                            if((aCart[objIndex].cantidad + iCantidad) <= iStock){
+                                aCart[objIndex].cantidad = aCart[objIndex].cantidad + iCantidad;
+                                aCart[objIndex].total = aCart[objIndex].cantidad * aCart[objIndex].precioUnitario
+                            }
+                            else{
+                                MessageOneButton('Sin Stock Suficiente','Excede el stock suficiente');
+                            }
+                        }
+                        $.jStorage.set("Cart",aCart)
                     }
-                    $.jStorage.set("Cart",aCart)
+                    cargarCarro();
                 }
-                cargarCarro();
+                else{
+                    MessageOneButton('Sin Stock Suficiente','Excede el stock suficiente');
+                }
             }
-            else{
-                //sin stock suficiente
-            }
-            //$.jStorage.set("mykey", "keyvalue");
-
             document.getElementById(idProducto).value = 1;            
         }
 
-        function cargarCarro(){
+        function moreItem(idProducto){
+            var aCart = $.jStorage.get("Cart");
+            var objIndex = aCart.findIndex((obj => obj.idProducto == idProducto));
+            var lblStock = "lblstock" + idProducto.toString();
+            var iStock = Number(document.getElementById(lblStock).innerHTML);
+            if(iStock >= (aCart[objIndex].cantidad + 1)){
+                aCart[objIndex].cantidad = aCart[objIndex].cantidad + 1;
+                aCart[objIndex].total = aCart[objIndex].cantidad * aCart[objIndex].precioUnitario;
+                $.jStorage.set("Cart",aCart)
+                cargarCarro();
+            }
+            else{
+                MessageOneButton('Sin Stock Suficiente','Excede el stock suficiente');
+            }
+        }
 
+        function lessItem(idProducto){
+            var aCart = $.jStorage.get("Cart");
+            var objIndex = aCart.findIndex((obj => obj.idProducto == idProducto));
+            if((aCart[objIndex].cantidad - 1) > 0){
+                aCart[objIndex].cantidad = aCart[objIndex].cantidad - 1;
+                aCart[objIndex].total = aCart[objIndex].cantidad * aCart[objIndex].precioUnitario
+            }
+            else{
+                aCart.splice(objIndex, 1); 
+            }
+            $.jStorage.set("Cart",aCart)
+            cargarCarro();
+        }
+
+        function deleteItem(idProducto){
+            //eliminar item
+            var aCart = $.jStorage.get("Cart");
+            var result = aCart.findIndex( product => product.idProducto === idProducto );
+            aCart.splice(result, 1); 
+            $.jStorage.set("Cart",aCart)
+            cargarCarro();
+        }
+
+        function cargarCarro(){
+            var aCart = $.jStorage.get("Cart");
+            var iTotal = 0;
+            var html = "<table class='table'>";
+            html += "<thead class='thead-dark'>";
+            html += "<tr>";
+            html += "<th scope='col'>#</th>";
+            html += "<th scope='col'>Producto</th>";
+            html += "<th scope='col'>Precio Unit.</th>";
+            html += "<th scope='col'>Cant</th>";
+            html += "<th scope='col'>Total</th>";
+            html += "<th scope='col'></th>";
+            html += "</tr>";
+            html += "</thead>";
+            html += "<tbody>";
+            for (var i = 0; i < aCart.length; i++) {
+                html+="<tr>";
+                html+="<th scope='row'>"+(i+1)+"</th>";
+                html+="<td>"+aCart[i].productoNombre+"</td>";
+                html+="<td>"+aCart[i].precioUnitario+"</td>";
+                html+="<td>"+aCart[i].cantidad+"</td>";
+                html+="<td>"+aCart[i].total+"</td>";
+                html+="<td>";
+                    html+="<div class='row'>";
+                        html+="<div class='col-md-6'>";
+                            html+="<button class='btnUp'  onclick='moreItem("+aCart[i].idProducto+")'><i class='fa fa-arrow-up'></i></button>";
+                        html+="</div>";
+                        html+="<div class='col-md-6'>";
+                            html+="<button class='btnDown'  onclick='lessItem("+aCart[i].idProducto+")'><i class='fa fa-arrow-down'></i></button>";
+                        html+="</div>";
+                        //html+="<div class='col-md-4'>";
+                            //html+="<button class='btn'  onclick='deleteItem("+aCart[i].idProducto+")'><i class='fa fa-ban'></i></button>";
+                        //html+="</div>";
+                    html+="</div>";
+                html+="</td>";
+                html+="</tr>";
+                iTotal += aCart[i].total;
+            }
+            html+="</table>";
+            $("dvCarroCompra").html(html);
+            document.getElementById("dvCarroCompra").innerHTML = html;
+            document.getElementById("lblTotal").innerHTML = iTotal;
+            onChangeMontoEfectivo();
+            document.getElementById("txtCodigoBarra").focus();
+        }
+
+        function MessageOneButton(sTitulo, sMensaje){
+            BootstrapDialog.show({
+            title: sTitulo,
+            message: sMensaje,
+            buttons: [{
+                label: 'Ok',
+                action: function(dialog) {
+                    dialogRef.close();
+                }
+            }]
+        });
         }
     </script>
     <section id="main-content">
         <section class="wrapper">
-            <div class="container">
+            <div class="container" style="width: 100%;">
                 <h1>Venta</h1>
                 <div class="row">
                     <div class="col-md-2">Codigo de barra : </div>
@@ -118,15 +224,18 @@
                     </div>
                 </div>
                 <br/>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                                <div class="row" style="height: 500px; width: 100%; overflow-y: scroll;">
+                <div class="container" style="width: 100%;">
+                    <div class="row" style='height: 500px; width: 100%; overflow-y: scroll;'> 
+                        <div class="col-md-7">
                                     <?php
                                         include_once("conf/producto.php");
                                         $result = listarProductoConStock();
                                         if ($result->num_rows > 0) {
+                                            $iCount = 0;
                                             while($row = $result->fetch_assoc()) {
+                                                if($iCount==0){
+                                                    echo("<div class='row' >");
+                                                }
                                                 echo("<div class='col-md-4 border border-primary' >");
                                                     echo($row["tipoProducto"]);
                                                     echo("<h4 class='nomargin'>");
@@ -135,27 +244,32 @@
                                                     echo("<p>");
                                                         echo("<label id='lblnombreproducto".$row["idproducto"]."' name='lblnombreproducto".$row["idproducto"]."' >".$row["nombreProducto"]."</label>");
                                                     echo("</p>");
-                                                    echo("Disponibilidad: ");
+                                                    echo("En Stock: ");
                                                         echo("<label id='lblstock".$row["idproducto"]."' name='lblstock".$row["idproducto"]."' >".$row["stock"]."</label>");
                                                     //echo($row["stock"]);
-                                                    echo(" - Precio: ");
+                                                    echo("<br />Precio: ");
                                                         echo("<label id='lblprecio".$row["idproducto"]."' name='lblprecio".$row["idproducto"]."' >".$row["precio"]."</label>");
                                                     //echo($row["precio"]);
                                                     echo("<div class='row'>");
-                                                        echo("<div class='col-md-5'>");
-                                                            echo("<button type='button' class='btn btn-primary' onclick='loadCart(".$row["idproducto"].")'>Agregar</button>");
+                                                        echo("<div class='col-md-6'>");
+                                                            echo("<button type='button' class='btn btn-primary' onclick='loadCart(".$row["idproducto"].")'><i class='fa fa-plus'></i></button></button>");
                                                         echo("</div>");
-                                                        echo("<div class='col-md-5'>");
+                                                        echo("<div class='col-md-6'>");
                                                             echo("<input type='number' id='".$row["idproducto"]."' name='".$row["idproducto"]."' class='form-control' value='1' min='1' max='100'>");
                                                         echo("</div>");
                                                     echo("</div>");
                                                 echo("</div>");
+                                                $iCount += 1;
+                                                if($iCount==3){
+                                                    echo("</div>");
+                                                    echo("<br />");
+                                                    $iCount = 0;
+                                                }
                                             }
                                         }
                                     ?>
-                                </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="row"><h2>Carro</h2></div>
                             <div class="row">
                                 <div id="dvCarroCompra" style="height: 250px; width: 100%; overflow-y: scroll;"></div>
@@ -164,8 +278,8 @@
                                 Tipo de pago : 
                                 <select class="form-control col-md-3" id="cbxTipoPago" onchange="onChangeTipoPago()">
                                     <option value="1">Efectivo</option>
-                                    <option value="2">Debito</option>
-                                    <option value="3">Credito</option>
+                                    <option value="2">T.Debito (RedCompra)</option>
+                                    <option value="3">T.Credito</option>
                                 </select>
                             </div>
                             <div class="row">
@@ -173,7 +287,7 @@
                             </div>
                             <div id="lblEfectivo" >
                                 Monto en efectivo : <input type="number" id="txtMontoEfectivo" name="txtMontoEfectivo" class="form-control" min="1" max="100"  onchange="onChangeMontoEfectivo()">
-                                Vuelto : <label id="lblVuelto" name="lblVuelto"></label>
+                                <h2>Vuelto : <label id="lblVuelto" name="lblVuelto"></label></h2>
                             </div>
                             <div id="lblTarjeta" style="visibility:hidden" >
                                 Nro. Comprobante: <input type="number" id="txtNroComprobante" name="txtNroComprobante" class="form-control" min="1" max="100">
@@ -189,11 +303,4 @@
     </section>
 </section>
 </section>
-<script src="lib/js/jquery-1.12.4.min.js" ></script>
-<script src="lib/js/jQuery.SimpleCart.js" ></script>
-<script>
-    $(document).ready(function () {
-        $('#cart').simpleCart();
-    });
-</script>
 <?php include_once("footer.php"); ?>

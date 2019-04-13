@@ -18,6 +18,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-dialog.min.css" rel="stylesheet">
   <!--external css-->
   <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
@@ -43,10 +44,10 @@
   <!--script for this page-->
   <!--<script type="text/javascript" src="lib/js/jquery-3.1.1.min.js"></script>-->
   <!--<script type="text/javascript" src="lib/js/jquery-ui.min.js"></script>-->
-  <script type="text/javascript" src="lib/js/bootstrap.js"></script>
-  <script type="text/javascript" src="lib/js/jquery.dataTables.min.js"></script>
+  <!--<script type="text/javascript" src="lib/js/bootstrap.js"></script>
+  
   <script type="text/javascript" src="lib/js/tableExport.js"></script>
-  <script type="text/javascript" src="lib/js/jquery.base64.js"></script>
+  
   <script type="text/javascript" src="lib/js/moment.js"></script>
   <script type="text/javascript" src="lib/js/moment-with-locales.js"></script>
   <script type="text/javascript" src="lib/js/dataTables.responsive.min.js"></script>
@@ -59,13 +60,12 @@
   <script type="text/javascript" src="lib/js/buttons.print.min.js"></script>
   <script type="text/javascript" src="lib/js/dataTables.bootstrap4.min.js"></script>
   <script type="text/javascript" src="lib/js/date-uk.js"></script>
-  <script type="text/javascript" src="lib/js/regiones.js"></script>
-
-  <link href="lib/css/simple_cart.css" rel="stylesheet">
-  <link href="lib/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="lib/js/regiones.js"></script>-->
+  <script type="text/javascript" src="lib/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="lib/js/jquery.base64.js"></script>
+  <script type="text/javascript" src="lib/js/bootstrap-dialog.min.js"></script>
+  <script type="text/javascript" src="lib/js/jstorage.min.js"></script>
   <link rel="stylesheet" href="lib/css/font-awesome.min.css" type="text/css">
 
-  <script src="lib/js/jquery-1.12.4.min.js" ></script>
-  <script src="lib/js/jQuery.SimpleCart.js" ></script>
 </head>
 <body>
