@@ -48,7 +48,16 @@
 
         function loadManualCart()
         {
-
+            if(document.getElementById("txtCodigoBarra").value != "" && document.getElementById("txtCantidad").value != ""){
+                idProducto = document.getElementById("txtCodigoBarra").value;
+                document.getElementById(idProducto).value = document.getElementById("txtCantidad").value;
+                document.getElementById("txtCodigoBarra").value = "";
+                document.getElementById("txtCantidad").value = "";
+                loadCart(idProducto);
+            }
+            else{
+                MessageOneButton('Error','Debe ingresar los datos');
+            }
         }
 
         function loadCart(idProducto){
@@ -195,15 +204,19 @@
 
         function MessageOneButton(sTitulo, sMensaje){
             BootstrapDialog.show({
-            title: sTitulo,
-            message: sMensaje,
-            buttons: [{
-                label: 'Ok',
-                action: function(dialog) {
-                    dialogRef.close();
-                }
-            }]
-        });
+                title: sTitulo,
+                message: sMensaje,
+                buttons: [{
+                    label: 'Ok',
+                    action: function(dialog) {
+                        dialog.close();
+                    }
+                }]
+            });
+        }
+
+        function VentaProductos(){
+
         }
     </script>
     <section id="main-content">
@@ -217,7 +230,7 @@
                     </div>
                     <div class="col-md-2">Cantidad : </div>
                     <div class="col-md-2">
-                        <input type="number" id="txtCodigoBarra" name="txtCodigoBarra" class="form-control" min="1" max="100">
+                        <input type="number" id="txtCantidad" name="txtCantidad" class="form-control" min="1" max="100">
                     </div>
                     <div class="col-md-3">
                     <button type="button" class="btn btn-primary" onclick="loadManualCart()">Agregar</button>
@@ -272,7 +285,7 @@
                         <div class="col-md-5">
                             <div class="row"><h2>Carro</h2></div>
                             <div class="row">
-                                <div id="dvCarroCompra" style="height: 250px; width: 100%; overflow-y: scroll;"></div>
+                                <div id="dvCarroCompra" style="height: 250px; width: 90%; overflow-y: scroll;"></div>
                             </div>
                             <div class="row">
                                 Tipo de pago : 
@@ -293,7 +306,7 @@
                                 Nro. Comprobante: <input type="number" id="txtNroComprobante" name="txtNroComprobante" class="form-control" min="1" max="100">
                             </div>
                             <div class="row">
-                                <button type="button" class="btn btn-primary" style="width: 100%;">Venta</button>
+                                <button type="button" class="btn btn-primary" style="width: 100%;" onclick="VentaProductos()">Venta</button>
                             </div>
                         </div>
                     </div>

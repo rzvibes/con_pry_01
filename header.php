@@ -23,6 +23,7 @@
   <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
   <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
+  <link href="css/jquery.dataTables.min.css" />
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
@@ -50,8 +51,7 @@
   
   <script type="text/javascript" src="lib/js/moment.js"></script>
   <script type="text/javascript" src="lib/js/moment-with-locales.js"></script>
-  <script type="text/javascript" src="lib/js/dataTables.responsive.min.js"></script>
-  <script type="text/javascript" src="lib/js/dataTables.buttons.min.js"></script>
+  
   <script type="text/javascript" src="lib/js/buttons.flash.min.js"></script>
   <script type="text/javascript" src="lib/js/jszip.min.js"></script>
   <script type="text/javascript" src="lib/js/pdfmake.min.js"></script>
@@ -60,8 +60,13 @@
   <script type="text/javascript" src="lib/js/buttons.print.min.js"></script>
   <script type="text/javascript" src="lib/js/dataTables.bootstrap4.min.js"></script>
   <script type="text/javascript" src="lib/js/date-uk.js"></script>
-  <script type="text/javascript" src="lib/js/regiones.js"></script>-->
+  <script type="text/javascript" src="lib/js/regiones.js"></script>
+   <script type="text/javascript" src="lib/js/dataTables.buttons.min.js"></script>
+  -->
   <script type="text/javascript" src="lib/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="lib/js/dataTables.responsive.min.js"></script>
+ 
+
   <script type="text/javascript" src="lib/js/jquery.base64.js"></script>
   <script type="text/javascript" src="lib/js/bootstrap-dialog.min.js"></script>
   <script type="text/javascript" src="lib/js/jstorage.min.js"></script>
